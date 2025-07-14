@@ -5,7 +5,7 @@
 
     <groupId>io.cucumber</groupId>
     <artifactId>cucumber-parent</artifactId>
-    <version>4.2.1-BCA-2-SNAPSHOT</version>
+    <version>4.3.7-BCA-1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Cucumber Parent</name>
     <description>Common configuration for all Cucumber modules</description>
@@ -22,45 +22,44 @@
     </developers>
 
     <properties>
-        <project.build.outputTimestamp>1704379142</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1745537671</project.build.outputTimestamp>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <outputDirectory>${project.build.directory}</outputDirectory>
         <minimum.maven.version>3.6.0</minimum.maven.version>
-        <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
         <java.version>1.8</java.version>
         <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
         <maven-archetype-plugin.version>3.3.1</maven-archetype-plugin.version>
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
         <maven-clean-plugin.version>3.4.1</maven-clean-plugin.version>
-        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
-        <maven-deploy-plugin.version>3.1.3</maven-deploy-plugin.version>
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+        <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
         <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
-        <maven-failsafe-plugin.version>3.5.2</maven-failsafe-plugin.version>
+        <maven-failsafe-plugin.version>3.5.3</maven-failsafe-plugin.version>
         <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
         <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
-        <maven-project-info-reports-plugin.version>3.8.0</maven-project-info-reports-plugin.version>
+        <maven-project-info-reports-plugin.version>3.9.0</maven-project-info-reports-plugin.version>
         <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
         <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
         <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
         <maven-site-plugin.version>3.21.0</maven-site-plugin.version>
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
-        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
         <maven-toolchains-plugin.version>3.2.0</maven-toolchains-plugin.version>
-        <maven-install-plugin.version>3.1.3</maven-install-plugin.version>
+        <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
         <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
         <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
+        <central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
         <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
-        <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
         <directory-maven-plugin.version>1.0</directory-maven-plugin.version>
-        <spotless-maven-plugin.version>2.44.2</spotless-maven-plugin.version>
+        <spotless-maven-plugin.version>2.44.4</spotless-maven-plugin.version>
     </properties>
 
     <licenses>
         <license>
             <name>MIT License</name>
-            <url>http://www.opensource.org/licenses/mit-license</url>
+            <url>https://www.opensource.org/licenses/mit-license</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -69,32 +68,9 @@
         <connection>scm:git:git://github.com/cucumber/cucumber-parent.git</connection>
         <developerConnection>scm:git:git@github.com:cucumber/cucumber-parent.git</developerConnection>
         <url>git://github.com/cucumber/cucumber-parent.git</url>
-        <tag>HEAD</tag>
+        <tag>v4.3.7</tag>
     </scm>
 
-    <!--
-     this adds a repository that the plugins will use for dependency resolution
-     Any items that we use in a plugin's <dependency> phase can be resolved from here, as well as central
-    -->
-<!--
-    <pluginRepositories>
-        <pluginRepository>
-            <id>sonatype.org</id>
-            <url>https://oss.sonatype.org/content/repositories/releases</url>
-        </pluginRepository>
-    </pluginRepositories>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
--->
     <profiles>
         <profile>
             <id>sign-source-javadoc</id>
@@ -129,16 +105,9 @@
                         <artifactId>maven-gpg-plugin</artifactId>
                         <executions>
                             <execution>
-                                <phase>verify</phase>
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
-                                <configuration>
-                                    <gpgArguments>
-                                        <arg>--pinentry-mode</arg>
-                                        <arg>loopback</arg>
-                                    </gpgArguments>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -248,7 +217,6 @@
                         <links>
                             <link>https://docs.oracle.com/javase/8/docs/api/</link>
                         </links>
-                        <stylesheet>java</stylesheet>
                     </configuration>
                 </plugin>
 
@@ -356,15 +324,15 @@
                 </plugin>
 <!--
                 <plugin>
-                    <groupId>org.sonatype.plugins</groupId>
-                    <artifactId>nexus-staging-maven-plugin</artifactId>
-                    <version>${nexus-staging-maven-plugin.version}</version>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>${central-publishing-maven-plugin.version}</version>
                     <extensions>true</extensions>
                     <configuration>
-                        <serverId>ossrh</serverId>
-                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        <stagingProgressTimeoutMinutes>15</stagingProgressTimeoutMinutes>
+                        <publishingServerId>central</publishingServerId>
+                        <autoPublish>true</autoPublish>
+                        <waitUntil>published</waitUntil>
+                        <deploymentName>${project.artifactId}:${project.version}</deploymentName>
                     </configuration>
                 </plugin>
 -->
@@ -460,6 +428,13 @@
                 <artifactId>maven-war-plugin</artifactId>
             </plugin>
 
+<!--
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+            </plugin>
+-->
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
@@ -479,12 +454,6 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
             </plugin>
-<!--
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-            </plugin>
--->
         </plugins>
     </build>
 
